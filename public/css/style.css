@@ -1,0 +1,43 @@
+body{
+  width: 100%;
+}
+.list ul {
+  width: 100%;
+  list-style: none;
+}
+.list li{
+  width: 33%;
+  display: inline-block;
+}
+.list_item{
+  height: 100%;
+}
+.list_img img{
+  width: 100%;
+}
+.list_name{
+}
+/*
+.list_img img{
+  width:342px;
+  height: 440px;
+}
+*/
+
+.item_img img{
+  width: 342px;
+  height: 440px;
+}
+.games_dit {
+  text-align: center;
+}
+.item_dit table{
+  width: 100%;
+}
+.item_dit li{
+  list-style: none;
+}
+.item_dit th{
+  white-space: nowrap;
+    width: 100px;
+}
