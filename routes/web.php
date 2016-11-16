@@ -63,4 +63,16 @@ Route::get('/end',function () {
   ]);
 });
 
+
+Route::get('/forLogout',function () {
+  Auth::logout();
+  return redirect('/');
+});
+//
+// Route::get('/forLogin',function () {
+//   Auth::login();
+// });
+
+
+
 Route::auth();

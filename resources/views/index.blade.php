@@ -10,6 +10,18 @@
       <h2>私のECサイト(仮)</h2>
     </div>
 
+
+    <div class="user">
+      @if(Auth::check())
+        UserName - {{Auth::user()->name}}
+        <a href="/forLogout">ログアウト</a>
+      @endif
+
+      @if(!Auth::check())
+        <a href="/login">ログイン</a>
+      @endif
+    </div>
+
       <ul>
         <div class="list">
           <h1>PS4</h1>
