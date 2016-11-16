@@ -32,7 +32,8 @@ Route::post('/cart', function(Request $request){
     $cart = new \App\Service\CartService();
     $cart->addItem($id);
     return redirect("/cart"); //カートのページへリダイレクト
-});
+})->middleware('auth');
+
 // カートの中を一覧表示
 Route::get('/cart', function(){
     $cart = new \App\Service\CartService();
@@ -61,3 +62,5 @@ Route::get('/end',function () {
   "games" => $games
   ]);
 });
+
+Route::auth();
