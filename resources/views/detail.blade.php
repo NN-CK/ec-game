@@ -1,10 +1,10 @@
-<!DOCTYPE html>
-  <head>
-    <meta charset="utf-8">
-    <title>商品ページ</title>
-    <link rel="stylesheet" href="/css/style.css" media="screen" title="no title">
-  </head>
-  <body>
+@extends('/template.main')
+
+@section('title','商品ページ')
+@section('style')
+<link rel="stylesheet" href="/css/style.css" media="screen" title="no title">
+@endsection
+@section('main')
     <a href="/">TOPへ</a>
 //Main
 <div class="user">
@@ -47,5 +47,4 @@
       <tr><th>詳細</th><td>{{$games->description}}</td></tr>
     </table>
   </div>
-  </body>
-</html>
+@endsection

@@ -1,11 +1,15 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <title>商品</title>
+@extends('/template.main')
+
+@section('title','商品')
+
+@section('style')
     <link rel="stylesheet" href="/css/style.css" media="screen" title="no title">
-  </head>
-  <body>
+
+
+@endsection
+
+@section('main')
+
     <div class="">
       <h2>私のECサイト(仮)</h2>
     </div>
@@ -22,26 +26,18 @@
       @endif
     </div>
 
-      <ul>
-        <div class="list">
-          <h1>PS4</h1>
-        @foreach($games as $games)
-        <li>
-        <div class="list_item">
-        <div class="list_img">
-                  <a href="/detail?id={{ $games->id }}">
-                        <img src="{{ $games->img }}" alt=""/>
-                    </div>
-                    <div class="list_name">
+        <div class="mainlist">
+          @foreach($games as $games)
+          <div class="mainlist_item">
+            <div class="mainlist_img">
+               <a href="/detail?id={{ $games->id }}">
+                <img src="{{ $games->img }}" alt=""/>
+            </div>
+                    <div class="mainlist_name">
                         <h2>{{ $games->name }}</h2>
+                        </a>
                     </div>
-                    </a>
-                <div>
-              </li>
-              @endforeach
-              </div>
-            </ul>
-
-
-  </body>
-</html>
+                  </div>
+                  @endforeach
+        </div>
+@endsection

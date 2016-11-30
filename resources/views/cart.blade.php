@@ -1,12 +1,13 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <title></title>
-  </head>
-  <body>
+@extends('/template.main')
 
-    <a href="/">TOPへ</a>//Main
+@section('title','商品')
+
+@section('style')
+
+@endsection
+
+@section('main')
+<a href="/">TOPへ</a>//Main
     <div class="user">
       @if(Auth::check())
         UserName - {{Auth::user()->name}}
@@ -47,5 +48,4 @@
         <p><a href="/"><input type="button" name="name" value="トップへ戻る"></a></p>
         <p><a href="/delete/all" class=""><input type="button" name="name" value="内容をすべて消す"></a></p>
     </div>
-  </body>
-</html>
+  @endsection

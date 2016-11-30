@@ -1,21 +1,27 @@
 body{
+}
+.main{
   width: 100%;
 }
-.list ul {
-  width: 100%;
+
+.mainlist{
+  width: 80%;
+  margin: 0 5%;
   list-style: none;
-}
-.list li{
-  width: 33%;
   display: inline-block;
 }
-.list_item{
-  height: 100%;
+.mainlist_item{
+  margin: 0;
+  width: 350px;
+  height: 533px;
+  display: inline-block;
+  border: solid;
+  vertical-align: top;
 }
-.list_img img{
+.mainlist_img img{
   width: 100%;
 }
-.list_name{
+.mainlist_name{
 }
 /*
 .list_img img{
@@ -24,10 +30,6 @@ body{
 }
 */
 
-.item_img img{
-  width: 342px;
-  height: 440px;
-}
 .games_dit {
   text-align: center;
 }
