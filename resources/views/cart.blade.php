@@ -7,17 +7,7 @@
 @endsection
 
 @section('main')
-<a href="/">TOPへ</a>//Main
-    <div class="user">
-      @if(Auth::check())
-        UserName - {{Auth::user()->name}}
-        <a href="/forLogout">ログアウト</a>
-      @endif
 
-      @if(!Auth::check())
-        <a href="/login">ログイン</a>
-      @endif
-    </div>
     <h1>中身</h1>
     <div class=""> <!--商品が入ってるとき -->
       @if($items)

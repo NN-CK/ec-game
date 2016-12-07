@@ -5,25 +5,12 @@
 @section('style')
     <link rel="stylesheet" href="/css/style.css" media="screen" title="no title">
 
-
 @endsection
 
 @section('main')
 
     <div class="">
       <h2>私のECサイト(仮)</h2>
-    </div>
-
-
-    <div class="user">
-      @if(Auth::check())
-        UserName - {{Auth::user()->name}}
-        <a href="/forLogout">ログアウト</a>
-      @endif
-
-      @if(!Auth::check())
-        <a href="/login">ログイン</a>
-      @endif
     </div>
 
         <div class="mainlist">

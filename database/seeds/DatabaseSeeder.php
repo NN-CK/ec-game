@@ -71,7 +71,42 @@ class DatabaseSeeder extends Seeder
             "created_at" => $now,
             "updated_at" => $now
         ];
+        $ps3_001 = [
+            "name" => "キングダム ハーツ -HD 2.5 リミックス-",
+            "img" => "img/ps3/ps3_001.jpg",
+            "description" =>
+            "シリーズを語る上で欠かせない「KINGDOM HEARTS II（キングダム ハーツ II」、その後を描いた「KINGDOM HEARTS Re:coded（キングダム ハーツ Re：コーデッド）」（HD映像作品）、シリーズの起源が描かれた「KINGDOM HEARTS Birth by Sleep（キングダム ハーツ バース バイ スリープ」の3作品を収録。",
+            "platform" => "PS3",
+            "maker" => "スクウェア･エニックス",
+            "price" => 5590,
+            "created_at" => $now,
+            "updated_at" => $now
+        ];
+        $xbox360_001 = [
+            "name" => "グランド・セフト・オートV",
+            "img" => "img/xbox360/xbox360_001.jpg",
+            "description" =>
+            "大都市ロスサントスや田舎のブレイン郡を訪れる人々は、かつての有名人や薬物依存者、パーティー好き、暴力的なギャング、ハイカー、バイカーなどありとあらゆる住人に出会うこととなる。
+山の頂上から、ロスサントスの通り、そして海の底まであらゆる場所を移動することができる。",
+            "platform" => "XBOX360",
+            "maker" => "Rockstar Games",
+            "price" => 4380,
+            "created_at" => $now,
+            "updated_at" => $now
+        ];
+        $xboxone_001 = [
+            "name" => "ウォッチドッグス2",
+            "img" => "img/xboxone/xboxone_001.jpg",
+            "description" =>
+            "プレイヤーは若きハッカー「マーカス・ホロウェイ」となり、ハッカー集団「デッドセック」の一員として、この街を支配するオペレーティングシステム、「ctOS 2.0」に挑む。
+ハッキング能力を駆使して街のあらゆるものをコントロールし、自由なアプローチで計画を遂行しよう。",
+            "platform" => "XBOXONE",
+            "maker" => "ユービーアイソフト",
+            "price" => 8160,
+            "created_at" => $now,
+            "updated_at" => $now
+        ];
 
-        DB::table('games')->insert([$ps4_001, $ps4_002,$ps4_003,$ps4_004,$ps4_005]);
+        DB::table('games')->insert([$ps4_001, $ps4_002,$ps4_003,$ps4_004,$ps4_005,$ps3_001,$xbox360_001,$xboxone_001]);
     }
 }
