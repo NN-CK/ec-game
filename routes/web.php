@@ -11,10 +11,17 @@ use Illuminate\Http\Request;
 | to using a Closure or controller method. Build something great!
 |
 */
-Route::get('/',function () {
+Route::get('/',function (Request $request) {
+  $platform = $request->get("platform");
   $games = DB::table('games')->get();
+  if (!empty($platform)){
+    $games = DB::table('games')->where('platform', $platform)->get();
+  }
+  $gameList = DB::table('games')->select('platform')->groupBy('platform')->get();
+  //重複して入れる
   return view('index',[
-  "games" => $games
+  "games" => $games,
+  "game_list" => $gameList
   ]);
 });
 

@@ -12,7 +12,19 @@
     <div class="">
       <h2>私のECサイト(仮)</h2>
     </div>
+    <div class="text-right">
+      <p>ハードでの絞り込みはこちら</p>
+      <form action="/" method="get">
+      <select class="" name="platform">
+        <option value="">全て</option>
+        @foreach($game_list as $value)
+        <option value="{{$value->platform}}">{{$value->platform}}</option>
+        @endforeach
+      </select>
 
+      <input type="submit" name="" value="絞り込み">
+      </form>
+    </div>
         <div class="mainlist">
           @foreach($games as $games)
           <div class="mainlist_item">
