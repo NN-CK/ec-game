@@ -43,12 +43,12 @@ Route::get('/detail', function(Request $request){
 
 // カートに入れる
 Route::post('/cart', function(Request $request){
-    // $id = $request->get("id"); //idを取得
-    // //個数の処理
-    // $num = 0;   //0で初期化
-    // $num = $request->get("num");  //個数を取得
-    // $cart = new \App\Service\CartService();
-    // $cart->addItem($id,$num);
+    $id = $request->get("id"); //idを取得
+    //個数の処理
+    $num = 0;   //0で初期化
+    $num = $request->get("num");  //個数を取得
+    $cart = new \App\Service\CartService();
+    $cart->addItem($id,$num);
     return redirect("/cart"); //カートのページへリダイレクト
 });//->middleware("auth");
 

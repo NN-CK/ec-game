@@ -108,5 +108,21 @@ class DatabaseSeeder extends Seeder
         ];
 
         DB::table('games')->insert([$ps4_001, $ps4_002,$ps4_003,$ps4_004,$ps4_005,$ps3_001,$xbox360_001,$xboxone_001]);
+    
+        // データのクリア
+        DB::table('users')->truncate();
+        // データ挿入
+        $now = Carbon::now();
+        $sample = [
+            "user_name" => "sample",
+            "email" =>"sample@mail.com",
+            "password" => "$2y$10\$TyGttdTRecE/Wv4.A21P2uXbdtvh3PiSaGIw29hL3tTTyr/VvQemq",
+            "remember_token" => "NULL",
+            "created_at" => $now,
+            "updated_at" => $now
+        ];
+
+        DB::table('users')->insert([$sample]);
     }
+
 }
