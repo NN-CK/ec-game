@@ -8,24 +8,37 @@
 
 @section('main')
 
-    <h1>中身</h1>
+    <h1>購入内容</h1>
     <div class=""> <!--商品が入ってるとき -->
-      @if($items)
+      @if($itemMap)
         <table>
           <thead>
             <tr>
               <th>商品名</th>
               <th>価格</th>
+              <th>個数</th>
             </tr>
           </thead>
           <tbody>
             <?php $sum = 0; ?>
-            @foreach($items as $index=>$item)
+            @foreach($itemMap as $itemId=>$item)
             <tr>
               <td>{{$item->name}}</td>
-              <td>{{$item->price}}</td>
+              <td>￥{{$item->price}}</td>
               <?php $sum += $item->price; ?>
-              <td style="text-align: center;"><a href="/delete?index={{ $index }}">削除</a></td>
+              <td><!-- 個数 -->
+                <?php  $id = $item->id;  ?>
+                <form class="" action="#" method="post">
+                  <select class="cart-num-4js" name="">
+                    <option value="<?php echo $count[$id] ?>"
+                      selected><?php echo $count[$id] ?></option>
+                      <?php for($i = $count[$id]; $i > 0; $i--){ ?>
+                    <option value="<?php echo $i - 1; ?>"><?php echo $i - 1; ?></option>
+                    <?php } ?>
+                  </select>
+                </form>
+              </td>
+              <td><a href="/delete?id={{ $itemId }}">削除</a></td>
             </tr>
             @endforeach
           </tbody>

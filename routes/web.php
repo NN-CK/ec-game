@@ -11,6 +11,14 @@ use Illuminate\Http\Request;
 | to using a Closure or controller method. Build something great!
 |
 */
+
+Route::get("/session",function(Request $req){
+  $count = $req->session()->get("count",0);
+  $count++;
+  $req->session()->put("count",$count);
+  return "this time count is $count";
+});
+
 Route::get('/',function (Request $request) {
   $platform = $request->get("platform");
   $games = DB::table('games')->get();
@@ -23,7 +31,7 @@ Route::get('/',function (Request $request) {
   "games" => $games,
   "game_list" => $gameList
   ]);
-});
+})->middleware("auth");
 
 Route::get('/detail', function(Request $request){
     $id = $request->get("id");
@@ -31,28 +39,38 @@ Route::get('/detail', function(Request $request){
     return view('detail', [
         "games" => $games
     ]);
-});
+})->middleware("auth");
 
 // カートに入れる
 Route::post('/cart', function(Request $request){
-    $id = $request->get("id"); //idを取得
-    $cart = new \App\Service\CartService();
-    $cart->addItem($id);
+    // $id = $request->get("id"); //idを取得
+    // //個数の処理
+    // $num = 0;   //0で初期化
+    // $num = $request->get("num");  //個数を取得
+    // $cart = new \App\Service\CartService();
+    // $cart->addItem($id,$num);
     return redirect("/cart"); //カートのページへリダイレクト
-})->middleware('auth');
+});//->middleware("auth");
 
 // カートの中を一覧表示
 Route::get('/cart', function(){
     $cart = new \App\Service\CartService();
+    list($items,$itemCount,$itemMap,$totalSum) = $cart->showCart(); //list(変数名,変数名) = 配列とかにすると、配列の中身を受け渡すことができる
     return view("cart", [ //データを渡してビューを表示
-        "items" => $cart->getItems()
+        //"items" => $cart->getItems()
+        "items" => $items ,
+        "count" => $itemCount ,
+        "itemMap" => $itemMap ,
+        "sum" => $totalSum
     ]);
 });
 // 商品を削除
 Route::get('/delete', function(Request $request){
-    $index = $request->get("index"); //削除した商品のindexを取得
+    //$index = $request->get("index"); //削除した商品のindexを取得
+    $itemId = $request->get("id"); //削除した商品のidを取得。 delete?id=Xの値が入る
     $cart = new \App\Service\CartService();
-    $cart->removeItem($index);
+    //$cart->removeItem($index);
+    $cart->removeItem($itemId);
     return redirect("/cart");
 });
 // カートを空にする
@@ -82,4 +100,8 @@ Route::get('/forLogout',function () {
 
 
 
-Route::auth();
+// Route::auth();
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index');
