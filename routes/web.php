@@ -63,7 +63,7 @@ Route::get('/cart', function(){
         "itemMap" => $itemMap ,
         "sum" => $totalSum
     ]);
-});
+})->middleware("auth");
 // 商品を削除
 Route::get('/delete', function(Request $request){
     //$index = $request->get("index"); //削除した商品のindexを取得
@@ -79,6 +79,25 @@ Route::get('/delete/all', function(){
     $cart->clear();
     return redirect("/cart"); //カートのページへリダイレクト
 });
+
+// 会計内容
+Route::post('/check', function(){
+  $cart = new \App\Service\CartService();
+  list($items,$itemCount,$itemMap,$totalSum) = $cart->showCart(); //list(変数名,変数名) = 配列とかにすると、配列の中身を受け渡すことができる
+  return view("check", [ //データを渡してビューを表示
+    //"items" => $cart->getItems()
+    "items" => $items ,
+    "count" => $itemCount ,
+    "itemMap" => $itemMap ,
+    "sum" => $totalSum
+    ]);
+})->middleware("auth");
+
+//会計完了
+Route::post('/complite', function(){
+
+})->middleware("auth");
+
 
 
 Route::get('/end',function () {

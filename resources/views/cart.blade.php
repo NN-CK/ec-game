@@ -10,6 +10,7 @@
 
     <h1>購入内容</h1>
     <div class=""> <!--商品が入ってるとき -->
+      <form class="" action="/check" method="post">
       @if($itemMap)
         <table>
           <thead>
@@ -28,15 +29,7 @@
               <?php $sum += $item->price; ?>
               <td><!-- 個数 -->
                 <?php  $id = $item->id;  ?>
-                <form class="" action="#" method="post">
-                  <select class="cart-num-4js" name="">
-                    <option value="<?php echo $count[$id] ?>"
-                      selected><?php echo $count[$id] ?></option>
-                      <?php for($i = $count[$id]; $i > 0; $i--){ ?>
-                    <option value="<?php echo $i - 1; ?>"><?php echo $i - 1; ?></option>
-                    <?php } ?>
-                  </select>
-                </form>
+                <?php echo $count[$item->id] ?>
               </td>
               <td><a href="/delete?id={{ $itemId }}">削除</a></td>
             </tr>
@@ -44,11 +37,12 @@
           </tbody>
         </table>
         合計:￥<?php echo $sum; ?>
-        <p><a href="/end"><input type="button" name="name" value="購入手続きへ"></a></p>
+        <p><input type="submit" name="name" value="購入手続きへ"></p>
         @else
         <a href="/">商品は入ってません</a>
         @endif
         <p><a href="/"><input type="button" name="name" value="トップへ戻る"></a></p>
         <p><a href="/delete/all" class=""><input type="button" name="name" value="内容をすべて消す"></a></p>
+        </form>
     </div>
   @endsection
