@@ -3,13 +3,14 @@
 @section('title','会計')
 
 @section('style')
-
+<link rel="stylesheet" href="/css/style.css" media="screen" title="no title">
 @endsection
 
 @section('main')
+<div class="check_main">
 <form class="" action="#" method="post">
   <h2>住所を入力してください。</h2>
-  <input type="text" name="" value="">
+  <textarea type="text" rows="4" cols="40" name="" value=""></textarea>
 
   <h1>以下の内容でよろしいですか?</h1>
   <p>お名前:{{Auth::user()->name}}</p>
@@ -39,11 +40,12 @@
         @endforeach
       </tbody>
     </table>
+    <h2>会計:￥<?php echo $sum; ?></h2>
     @endif
-    <input type="submit" name="" value="">
+    <input type="submit" class="fit" name="" value="購入する">
 </form>
 
-
+</div>
 
 
 

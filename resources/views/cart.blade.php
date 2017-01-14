@@ -1,6 +1,6 @@
 @extends('/template.main')
 
-@section('title','商品')
+@section('title','カート')
 
 @section('style')
 

@@ -3,17 +3,17 @@ body{
 .main{
   width: 100%;
 }
-
+/*menu*/
 .mainlist{
   width: 80%;
-  margin: 0 5%;
+  margin: 0 5% 50px 5%;
   list-style: none;
   display: inline-block;
 }
 .mainlist_item{
   margin: 0;
-  width: 350px;
-  height: 533px;
+  width: 300px;
+  height: 520px;
   display: inline-block;
   border: solid;
   vertical-align: top;
@@ -29,17 +29,44 @@ body{
   height: 440px;
 }
 */
-
+/*detail*/
 .games_dit {
+  width: 90%;
   text-align: center;
 }
+.item_img {
+  margin:auto 100px ;
+  text-align: center;
+  width: 30%;
+  height: auto;
+  vertical-align: top;
+  float: left;
+}
+.item_img img {
+  width: 100%;
+  margin: auto;
+}
+.games_spec {
+  width: 50%;
+  text-align: center;
+  float: right;
+}
+
 .item_dit table{
   width: 100%;
+  text-align: left;
 }
 .item_dit li{
   list-style: none;
 }
 .item_dit th{
   white-space: nowrap;
-    width: 100px;
+  width: 100px;
+}
+
+/*check*/
+.check_main {
+  width: 80%;
+  margin: auto;
+  text-align: center;
 }

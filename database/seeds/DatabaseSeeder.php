@@ -116,7 +116,7 @@ class DatabaseSeeder extends Seeder
         $sample = [
             "name" => "sample",
             "email" =>"sample@mail.com",
-            "password" => "$2y$10\$TyGttdTRecE/Wv4.A21P2uXbdtvh3PiSaGIw29hL3tTTyr/VvQemq",
+            "password" => "bcrypt('sample')",
             "remember_token" => "NULL",
             "created_at" => $now,
             "updated_at" => $now

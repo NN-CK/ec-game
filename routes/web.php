@@ -19,7 +19,11 @@ Route::get("/session",function(Request $req){
   return "this time count is $count";
 });
 
-Route::get('/',function (Request $request) {
+Route::get('/',function () {
+  return view ('index');
+});
+
+Route::get('/menu',function (Request $request) {
   $platform = $request->get("platform");
   $games = DB::table('games')->get();
   if (!empty($platform)){
@@ -27,11 +31,11 @@ Route::get('/',function (Request $request) {
   }
   $gameList = DB::table('games')->select('platform')->groupBy('platform')->get();
   //重複して入れる
-  return view('index',[
+  return view('menu',[
   "games" => $games,
   "game_list" => $gameList
   ]);
-})->middleware("auth");
+});
 
 Route::get('/detail', function(Request $request){
     $id = $request->get("id");
@@ -39,7 +43,7 @@ Route::get('/detail', function(Request $request){
     return view('detail', [
         "games" => $games
     ]);
-})->middleware("auth");
+});
 
 // カートに入れる
 Route::post('/cart', function(Request $request){
@@ -63,7 +67,7 @@ Route::get('/cart', function(){
         "itemMap" => $itemMap ,
         "sum" => $totalSum
     ]);
-})->middleware("auth");
+});
 // 商品を削除
 Route::get('/delete', function(Request $request){
     //$index = $request->get("index"); //削除した商品のindexを取得
@@ -91,7 +95,7 @@ Route::post('/check', function(){
     "itemMap" => $itemMap ,
     "sum" => $totalSum
     ]);
-})->middleware("auth");
+});
 
 //会計完了
 Route::post('/complite', function(){
