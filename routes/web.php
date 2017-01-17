@@ -98,8 +98,11 @@ Route::post('/check', function(){
 });
 
 //会計完了
-Route::post('/complite', function(){
-
+Route::post('/complite', function(Request $request){
+  $Checkaddless = $request->get("addless");
+  $user_id = $request->get("user_id");
+  $cart = new \App\Service\Checkservice();
+  return redirect("/");
 })->middleware("auth");
 
 

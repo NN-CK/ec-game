@@ -8,13 +8,15 @@
 
 @section('main')
 <div class="check_main">
-<form class="" action="#" method="post">
+<form class="" action="/complite" method="post">
   <h2>住所を入力してください。</h2>
-  <textarea type="text" rows="4" cols="40" name="" value=""></textarea>
+  <textarea type="text" rows="4" cols="40" name="addless" value=""></textarea>
 
   <h1>以下の内容でよろしいですか?</h1>
   <p>お名前:{{Auth::user()->name}}</p>
   <p>メールアドレス:{{Auth::user()->email}}</p>
+  <!-- ユーザーデータ保存 -->
+  <input type="hidden" name="user_id" value="{{Auth::user()->id}}">
 
   <h2>購入内容</h2>
   @if($itemMap)
