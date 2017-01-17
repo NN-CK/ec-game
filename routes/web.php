@@ -25,12 +25,8 @@ Route::get('/',function () {
 
 Route::get('/menu',function (Request $request) {
   $platform = $request->get("platform");
-  $games = DB::table('games')->get();
-  if (!empty($platform)){
-    $games = DB::table('games')->where('platform', $platform)->get();
-  }
-  $gameList = DB::table('games')->select('platform')->groupBy('platform')->get();
-  //重複して入れる
+  $start = new \App\Service\PlatformService();
+  list($games,$gameList) = $start->Platform();
   return view('menu',[
   "games" => $games,
   "game_list" => $gameList
@@ -113,7 +109,6 @@ Route::get('/end',function () {
   "games" => $games
   ]);
 });
-
 
 Route::get('/forLogout',function () {
   Auth::logout();

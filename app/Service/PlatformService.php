@@ -16,6 +16,6 @@ class PlatformService{
     }
     $gameList = DB::table('games')->select('platform')->groupBy('platform')->get();
     //重複して入れる
-    return [$games,$gameList,$platform];
+    return [$games,$gameList];
   }
 }
