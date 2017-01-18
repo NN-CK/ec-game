@@ -12,13 +12,6 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::get("/session",function(Request $req){
-  $count = $req->session()->get("count",0);
-  $count++;
-  $req->session()->put("count",$count);
-  return "this time count is $count";
-});
-
 Route::get('/',function () {
   return view ('index');
 });
@@ -93,13 +86,6 @@ Route::post('/complite', function(){
   session()->flush();
   return view("/complite");
 })->middleware("auth");
-
-Route::get('/end',function () {
-  $games = DB::table('games')->get();
-  return view('end',[
-  "games" => $games
-  ]);
-});
 
 Route::get('/forLogout',function () {
   Auth::logout();
