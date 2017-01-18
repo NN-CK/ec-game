@@ -58,5 +58,18 @@
           </ul>
         </nav>
       @yield('main')
+			<!-- Footer -->
+					<footer id="footer">
+						<div class="inner">
+							<ul>
+								<h2>私のECサイト（仮）</h2>
+							</ul>
+							<ul class="copyright">
+								<li>&copy; Untitled. All rights reserved</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+							</ul>
+						</div>
+					</footer>
+
+			</div>
   </body>
 </html>

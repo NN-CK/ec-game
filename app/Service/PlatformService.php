@@ -9,7 +9,7 @@ class PlatformService{
    * カートの中にデータを入れる
    * @param $id
    */
-  public function Platform(){
+  public function Platform($platform){
     $games = DB::table('games')->get();
     if (!empty($platform)){
       $games = DB::table('games')->where('platform', $platform)->get();
