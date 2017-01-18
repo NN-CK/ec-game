@@ -25,12 +25,8 @@ Route::get('/',function () {
 
 Route::get('/menu',function (Request $request) {
   $platform = $request->get("platform");
-  $games = DB::table('games')->get();
-  if (!empty($platform)){
-    $games = DB::table('games')->where('platform', $platform)->get();
-  }
-  $gameList = DB::table('games')->select('platform')->groupBy('platform')->get();
-  //重複して入れる
+  $start = new \App\Service\PlatformService();
+  list($games,$gameList) = $start->Platform($platform);
   return view('menu',[
   "games" => $games,
   "game_list" => $gameList
@@ -47,21 +43,19 @@ Route::get('/detail', function(Request $request){
 
 // カートに入れる
 Route::post('/cart', function(Request $request){
-    $id = $request->get("id"); //idを取得
-    //個数の処理
-    $num = 0;   //0で初期化
-    $num = $request->get("num");  //個数を取得
+    $id = $request->get("id");
+    $num = 0;
+    $num = $request->get("num");
     $cart = new \App\Service\CartService();
     $cart->addItem($id,$num);
-    return redirect("/cart"); //カートのページへリダイレクト
+    return redirect("/cart");
 });//->middleware("auth");
 
 // カートの中を一覧表示
 Route::get('/cart', function(){
     $cart = new \App\Service\CartService();
-    list($items,$itemCount,$itemMap,$totalSum) = $cart->showCart(); //list(変数名,変数名) = 配列とかにすると、配列の中身を受け渡すことができる
-    return view("cart", [ //データを渡してビューを表示
-        //"items" => $cart->getItems()
+    list($items,$itemCount,$itemMap,$totalSum) = $cart->showCart();
+    return view("cart", [
         "items" => $items ,
         "count" => $itemCount ,
         "itemMap" => $itemMap ,
@@ -70,10 +64,8 @@ Route::get('/cart', function(){
 });
 // 商品を削除
 Route::get('/delete', function(Request $request){
-    //$index = $request->get("index"); //削除した商品のindexを取得
-    $itemId = $request->get("id"); //削除した商品のidを取得。 delete?id=Xの値が入る
+    $itemId = $request->get("id");
     $cart = new \App\Service\CartService();
-    //$cart->removeItem($index);
     $cart->removeItem($itemId);
     return redirect("/cart");
 });
@@ -81,15 +73,14 @@ Route::get('/delete', function(Request $request){
 Route::get('/delete/all', function(){
     $cart = new \App\Service\CartService();
     $cart->clear();
-    return redirect("/cart"); //カートのページへリダイレクト
+    return redirect("/cart");
 });
 
 // 会計内容
 Route::post('/check', function(){
   $cart = new \App\Service\CartService();
-  list($items,$itemCount,$itemMap,$totalSum) = $cart->showCart(); //list(変数名,変数名) = 配列とかにすると、配列の中身を受け渡すことができる
-  return view("check", [ //データを渡してビューを表示
-    //"items" => $cart->getItems()
+  list($items,$itemCount,$itemMap,$totalSum) = $cart->showCart();
+  return view("check", [
     "items" => $items ,
     "count" => $itemCount ,
     "itemMap" => $itemMap ,
@@ -98,14 +89,10 @@ Route::post('/check', function(){
 });
 
 //会計完了
-Route::post('/complite', function(Request $request){
-  $Checkaddless = $request->get("addless");
-  $user_id = $request->get("user_id");
-  $cart = new \App\Service\Checkservice();
-  return redirect("/");
+Route::post('/complite', function(){
+  session()->flush();
+  return view("/complite");
 })->middleware("auth");
-
-
 
 Route::get('/end',function () {
   $games = DB::table('games')->get();
@@ -113,7 +100,6 @@ Route::get('/end',function () {
   "games" => $games
   ]);
 });
-
 
 Route::get('/forLogout',function () {
   Auth::logout();
@@ -123,8 +109,6 @@ Route::get('/forLogout',function () {
 // Route::get('/forLogin',function () {
 //   Auth::login();
 // });
-
-
 
 // Route::auth();
 

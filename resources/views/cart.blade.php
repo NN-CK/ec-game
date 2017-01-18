@@ -37,6 +37,7 @@
           </tbody>
         </table>
         合計:￥<?php echo $sum; ?>
+        <p><a href="/menu"><input type="button" name="name" value="注文を続ける"></a></p>
         <p><input type="submit" name="name" value="購入手続きへ"></p>
         @else
         <a href="/">商品は入ってません</a>
